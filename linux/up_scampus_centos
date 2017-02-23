@@ -1,0 +1,3 @@
+	scp -r /home/a/jwork/.metadata/.me_tcat7/webapps/
+	root@119.29.154.78:/home/apache-tomcat-8.5.9/webapps/
+

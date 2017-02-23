@@ -1,0 +1,62 @@
+JAVA_HOME=/home/k/java/jdk1.8.0_101
+PATH=$JAVA_HOME/bin:$PATH
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export JAVA_HOME
+export PATH
+export CLASSPATH
+
+
+
+
+
+
+
+这两天我们的开发机重启了好几次，现每次重启后我的tomcat总是没有启动。
+检查Java路径，配置正确，后来拿普通账号启动tomcat时报如下的错：
+1
+	Neither the JAVA_HOME nor the JRE_HOME environment variable is defined
+2
+	At least one of these environment variable is needed to run this program
+
+ 
+原来是我使用的jdk不是通过yum安装的，是我从官网直接下载的，虽然我修改了java_home，但不太智能的tomcat仍然没有自动识别出java_home路径。
+
+解决方法：
+编辑文件 /usr/local/tomcat/bin/catalina.sh (根据你自己的jdk路径进行修改) 在文件的正文开头，即正式代码前，大概在99行添加如下代码
+1
+	export JAVA_HOME=/usr/local/jdk
+2
+	export JRE_HOME=/usr/local/jdk/jre
+
+修改后大概是下面的样子
+view source
+01
+	# $Id: catalina.sh 1202062 2011-11-15 06:50:02Z mturk $
+02
+	# -----------------------------------------------------------------------------
+03
+	 
+04
+	export JAVA_HOME=/usr/local/jdk
+05
+	export JRE_HOME=/usr/local/jdk/jre
+06
+	 
+07
+	# OS specific support.  $var _must_ be set to either true or false.
+08
+	cygwin=false
+09
+	darwin=false
+10
+	os400=false
+11
+	case "`uname`" in
+12
+	CYGWIN*) cygwin=true;;
+13
+	Darwin*) darwin=true;;
+14
+	OS400*) os400=true;;
+15
+	esac .....................
