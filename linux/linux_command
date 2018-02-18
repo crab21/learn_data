@@ -91,3 +91,29 @@ jstack -l 端口号 > ***.log
 
 查看进程日志的:
 jstack -l 端口号 > ***.log
+
+
+
+chkconfig:
+     主要用来更新（启动和停止）和查询系统服务的运行级信息。
+     禁区：此命令不是立即自动禁止或激活一个服务，仅仅的改变了符号连接。
+     --add 增加所指定的系统服务，让chkconfig指令得以管理它，并同时在系统启动的描述文件内增加相关的数据。
+     --del 删除所指定的系统服务
+     --level <等级代号>      指定读系统服务要在哪一个执行等级中打开或者关闭
+         --0：表示关机
+         --1：单用户模式
+         --2：无网络连接的多用户命令
+         --3：用网络连接的多用户命令
+         --4：不可用
+         --5：带图形界面的多用户模式
+         --6：重新启动
+eg：
+     chkconfig  --list   #列出所有的系统服务
+     chkconfig  --add httpd  #增加httpd服务
+     chkconfig  --level httpd 2345 on  #设置http在运行级别为：2 3 4 5的情况下都是On(开启)的状态
+     chkconfig  --list mysqld  #列出mysqld服务设置情况
+     chkconfig  mysqld on   #设定mysqld在各等级为 on “各等级”包括 2 3 4 5等级
+
+
+
+    
