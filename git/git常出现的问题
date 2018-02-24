@@ -21,3 +21,34 @@ git出现的问题解决：
 	使用git stash apply stash@{num}方法 除了不在stash队列删除外其他和git stash pop 完全一样。 
 	=====
 	当有紧急工作时，又不想commit现在做一半的工作，就用git stash，然后就可以切换到其他分支进行紧急工作。
+
+	
+	提交历史记录
+
+查看旧的提交历史记录（指定某一个范围内的）
+
+$ git log --pretty=short --abbrev-commit master~10..master~2
+commit ca1c982
+Author: crab <imrcrab@163.com>
+
+  Revert "git learn-data"
+
+commit 5af92ca
+Author: crab <imrcrab@163.com>
+
+  git learn-data
+
+commit 7ec3a3f
+Author: mrcrab <imrcrab@163.com>
+
+  add chkconfig order details
+
+commit bf08475
+Author: imrcrab <imrcrab@163.com>
+
+  新增mysql备份
+
+commit 26ba0bd
+Author: imrcrab <imrcrab@163.com>
+
+
