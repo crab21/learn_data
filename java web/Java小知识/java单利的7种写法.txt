@@ -1,2 +1,0 @@
-单利模式的7种写法：
-http://cantellow.iteye.com/blog/838473

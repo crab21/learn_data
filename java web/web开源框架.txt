@@ -1,2 +1,0 @@
-terasoluna framework 5£º
-http://terasolunaorg.github.io/guideline/5.3.1.RELEASE/en/ArchitectureInDetail/WebApplicationDetail/SessionManagement.html
