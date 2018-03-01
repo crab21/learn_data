@@ -1,0 +1,16 @@
+字节流的操作
+
+
+DataOutputStream/DataInputStream :
+
+	对“流”的功能的扩展，可以更加方便的读取int long,字符等数据类型的数据
+
+
+java文本是16位无符号整数，是字符的unicode编码
+文件是byte byte byte 的数据序列
+文本文件是文版（char）序列按照某种编码方式序列化为byte的存储结果
+  
+
+
+BufferedReader ----->readLine() 一次读一行
+BufferedWriter ------>一次写一行
