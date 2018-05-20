@@ -76,6 +76,27 @@ public class Sum {
         return null;
     }
 
+
+    /**
+     * 最优算法
+     * time complexity: O(1)
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int[] fourTwoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; ++i) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
+            }
+            map.put(nums[i], i);
+        }
+        return null;
+    }
+
     final String a = "100";
 
     public void test(int param) {
