@@ -1,10 +1,16 @@
 package com.example.algorithm.learn;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Sum {
     /**
      * [2,7,20]
      * >>>9
      * >>>>>>>[2,7]
+     * <p>
+     * <p>
+     * time complexity: O(n^2)
      *
      * @param nums
      * @param target
@@ -22,6 +28,50 @@ public class Sum {
             throw new IllegalAccessException("no tow sum solution");
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    /**
+     * 复习上面的写法
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int[] twoB(int[] nums, int target) {
+        for (int i = 0; i < nums.length; ++i) {
+            for (int j = i + 1; j < nums.length; ++j) {
+                if (nums[j] == target - nums[i]) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        //todo 抛出异常
+        //...
+        return null;
+    }
+
+    /**
+     * time complexity: O(n)
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int[] three(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; ++i) {
+            map.put(nums[i], i);
+        }
+
+        for (int i = 0; i < nums.length; ++i) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement) && map.get(complement) != i) {
+                return new int[]{i, map.get(complement)};
+            }
         }
         return null;
     }
