@@ -1,10 +1,11 @@
 package com.example.algorithm.Executor;
 
+import javax.xml.bind.Element;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import java.util.List;
+import java.util.concurrent.*;
 
 public class TaskExecutorWebServer {
     private static final int NTHREADS = 100;
@@ -33,5 +34,29 @@ public class TaskExecutorWebServer {
 
     public static void main(String[] args) {
         threadMain();
+    }
+
+    /**
+     * 创建一个固定大小的线程池，并采用有界队列以及”调用者运行“饱和策略
+     */
+    public void createExecutor() {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(10, 20, 0L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingDeque<>());
+        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+    }
+
+    public void processSequentially(List<Element> elements) {
+        for (Element el :
+                elements) {
+            process(el);
+        }
+    }
+
+    public void processInParallel(Executor exec, List<Element> elements) {
+        for (final Element el : elements)
+            exec.execute(() -> process(el));
+    }
+
+    private void process(Element el) {
     }
 }
