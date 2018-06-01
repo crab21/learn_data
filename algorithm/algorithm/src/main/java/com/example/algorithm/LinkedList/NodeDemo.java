@@ -30,9 +30,23 @@ public class NodeDemo {
         if (head == null || head.getNext() == null)
             return head;
         Nodes pre = reverse(head.getNext());
-        System.out.println(head.getData()+">>>>>>>>>>>>>");
+        System.out.println(head.getData() + ">>>>>>>>>>>>>");
         head.getNext().setNext(head);
         head.setNext(null);
         return pre;
+    }
+
+    /**
+     * 获取链表长度
+     * @param head
+     * @return
+     */
+    public static int getNodesLength(Nodes head) {
+        int size = 0;
+        while (head.getNext() != null) {
+            size += 1;
+            head = head.getNext();
+        }
+        return size;
     }
 }
