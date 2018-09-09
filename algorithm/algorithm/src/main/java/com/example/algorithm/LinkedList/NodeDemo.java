@@ -1,5 +1,8 @@
 package com.example.algorithm.LinkedList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NodeDemo {
     public static void main(String[] args) {
         Nodes head = new Nodes(1);

@@ -1,5 +1,9 @@
 package com.example.algorithm.collections_package;
 
+import sun.security.provider.MD5;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -65,7 +69,6 @@ public class LearnQueue {
         System.out.println(queue.size());
         queue.clear();
         System.out.println(queue.size());
-
     }
 
     public static void main(String[] args) {
