@@ -16,9 +16,9 @@ public class NodeDemo {
         nodes1.setNext(nodes2);
         nodes2.setNext(nodes3);
         nodes3.setNext(nodes4);
-       /* printList(head);
+       /* printList(head);*/
         head = reverse(head);
-        printList(head);*/
+        printList(head);
         int nodesLength = getNodesLength(head);
         System.out.println(nodesLength);
     }
