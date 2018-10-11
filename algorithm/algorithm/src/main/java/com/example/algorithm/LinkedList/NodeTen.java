@@ -109,14 +109,10 @@ public class NodeTen {
      */
 
     public MyNode resverMyNode(MyNode node) {
-        MyNode preRever = head;
         MyNode pNode = head;
         MyNode prev = null;
         while (pNode != null) {
             MyNode nodeNext = pNode.next;
-            if (nodeNext == null) {
-                preRever = pNode;
-            }
             pNode.next = prev;
             prev = pNode;
             pNode = nodeNext;
@@ -125,7 +121,11 @@ public class NodeTen {
         return this.head;
     }
 
-
+    /**
+     * 删除重复的节点
+     *
+     * @param node
+     */
     public void deleteDuplecate(MyNode node) {
         MyNode p = node;
         while (p != null) {
