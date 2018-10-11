@@ -1,8 +1,5 @@
 package com.example.algorithm.LinkedList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class NodeDemo {
     public static void main(String[] args) {
         Nodes head = new Nodes(1);
@@ -11,13 +8,26 @@ public class NodeDemo {
         Nodes nodes2 = new Nodes(4);
         Nodes nodes3 = new Nodes(5);
         Nodes nodes4 = new Nodes(6);
+        Nodes nodes5 = new Nodes(7);
+        Nodes nodes6 = new Nodes(8);
+        Nodes nodes7 = new Nodes(5);
+        Nodes nodes8 = new Nodes(6);
+        Nodes nodes9 = new Nodes(7);
+        Nodes nodes10 = new Nodes(8);
         head.setNext(nodes);
         nodes.setNext(nodes1);
         nodes1.setNext(nodes2);
         nodes2.setNext(nodes3);
         nodes3.setNext(nodes4);
-       /* printList(head);*/
-        head = reverse(head);
+        nodes4.setNext(nodes5);
+        nodes5.setNext(nodes6);
+        nodes6.setNext(nodes7);
+        nodes7.setNext(nodes8);
+        nodes8.setNext(nodes9);
+
+        /* printList(head);*/
+//        head = reverse(head);
+        isLoop(head);
         printList(head);
         int nodesLength = getNodesLength(head);
         System.out.println(nodesLength);
@@ -43,6 +53,7 @@ public class NodeDemo {
 
     /**
      * 获取链表长度
+     *
      * @param head
      * @return
      */
@@ -53,5 +64,29 @@ public class NodeDemo {
             head = head.getNext();
         }
         return size;
+    }
+
+    /**
+     * 判断是否有环
+     */
+    public static void isLoop(Nodes head) {
+        Nodes slow = head, fast = head;
+        if (slow == null) return;
+        if (fast.getNext() == null) return;
+        slow = slow.getNext();
+        fast = fast.getNext().getNext();
+        while (fast != null) {
+
+            System.out.println(slow.getData()+"...slow");
+            System.out.println(fast.getData());
+            if (slow == fast) {
+                System.out.println("存在环情况...");
+                return;
+            }
+            slow = slow.getNext();
+
+            fast = fast.getNext().getNext();
+        }
+        System.out.println("不存在环的情况....");
     }
 }
