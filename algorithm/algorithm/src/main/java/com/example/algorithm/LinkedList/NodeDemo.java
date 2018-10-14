@@ -10,10 +10,10 @@ public class NodeDemo {
         Nodes nodes4 = new Nodes(6);
         Nodes nodes5 = new Nodes(7);
         Nodes nodes6 = new Nodes(8);
-        Nodes nodes7 = new Nodes(5);
-        Nodes nodes8 = new Nodes(6);
-        Nodes nodes9 = new Nodes(7);
-        Nodes nodes10 = new Nodes(8);
+        Nodes nodes7 = new Nodes(9);
+        Nodes nodes8 = new Nodes(10);
+        Nodes nodes9 = new Nodes(11);
+        Nodes nodes10 = new Nodes(12);
         head.setNext(nodes);
         nodes.setNext(nodes1);
         nodes1.setNext(nodes2);
@@ -24,13 +24,15 @@ public class NodeDemo {
         nodes6.setNext(nodes7);
         nodes7.setNext(nodes8);
         nodes8.setNext(nodes9);
+        nodes9.setNext(nodes5);
 
         /* printList(head);*/
 //        head = reverse(head);
         isLoop(head);
-        printList(head);
-        int nodesLength = getNodesLength(head);
-        System.out.println(nodesLength);
+//        printList(head);
+//        findJoin(head);
+//        int nodesLength = getNodesLength(head);
+//        System.out.println(nodesLength);
     }
 
     private static void printList(Nodes head) {
@@ -77,10 +79,11 @@ public class NodeDemo {
         fast = fast.getNext().getNext();
         while (fast != null) {
 
-            System.out.println(slow.getData()+"...slow");
+            System.out.println(slow.getData() + "...slow");
             System.out.println(fast.getData());
             if (slow == fast) {
                 System.out.println("存在环情况...");
+                System.out.println(fast.getData() + ".....相遇点位置");
                 return;
             }
             slow = slow.getNext();
@@ -88,5 +91,39 @@ public class NodeDemo {
             fast = fast.getNext().getNext();
         }
         System.out.println("不存在环的情况....");
+    }
+
+    static Nodes pos;
+    static Nodes join;
+
+
+    /**
+     * 寻找环的入口
+     */
+    public static Nodes findJoin(Nodes head) {
+        Nodes fast = head, slow = head;
+        while (slow != null && fast.getNext() != null) {
+            fast = fast.getNext().getNext();
+            slow = slow.getNext();
+            if (slow == fast) break;
+        }
+        if (slow == null || fast.getNext() == null) {
+            System.out.println("没有环");
+            return null;
+        }
+        pos = slow;
+        Nodes node = slow;
+        Nodes start = head;
+        while (node != start) {
+            System.out.println("相遇点值变化.." + node.getData());
+            node = node.getNext();
+            System.out.println("起始点点值变化.." + start.getData());
+            start = start.getNext();
+        }
+        join = start;
+        System.out.println("入口点" + join.getData());
+        return start;
+
+
     }
 }
