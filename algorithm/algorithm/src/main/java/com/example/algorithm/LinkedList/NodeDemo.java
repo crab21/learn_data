@@ -13,7 +13,6 @@ public class NodeDemo {
         Nodes nodes7 = new Nodes(9);
         Nodes nodes8 = new Nodes(10);
         Nodes nodes9 = new Nodes(11);
-        Nodes nodes10 = new Nodes(12);
         head.setNext(nodes);
         nodes.setNext(nodes1);
         nodes1.setNext(nodes2);
@@ -29,6 +28,9 @@ public class NodeDemo {
         /* printList(head);*/
 //        head = reverse(head);
         isLoop(head);
+        findJoin(head);
+        cirCount1();
+        calcuateLength(head);
 //        printList(head);
 //        findJoin(head);
 //        int nodesLength = getNodesLength(head);
@@ -123,7 +125,46 @@ public class NodeDemo {
         join = start;
         System.out.println("入口点" + join.getData());
         return start;
+    }
 
 
+    /**
+     * 计算环上点的个数 方法1
+     */
+    public static int cirCount1() {
+        int count = 1;
+        Nodes nodes = join.getNext();
+        while (nodes != join) {
+            nodes = nodes.getNext();
+            count++;
+        }
+        System.out.println("换上节点的个数：" + count);
+        return count;
+    }
+
+    /**
+     * 计算环上点的个数 方法2
+     */
+    public static int cirCount2() {
+        int count = 1;
+        Nodes fast = pos.getNext().getNext();
+        Nodes slow = pos.getNext();
+        while (fast != slow) {
+            fast = fast.getNext().getNext();
+            slow = slow.getNext();
+            count++;
+        }
+        return count;
+    }
+
+    /**
+     * 计算头节点到环入口的长度、计算链表长度
+     */
+    public static void calcuateLength(Nodes head) {
+        int count = 0;
+        for (Nodes nodes = head; nodes != join; nodes = nodes.getNext(), ++count) ;
+        System.out.println("节点到环入口长度：" + count);
+        int listCount = count + cirCount1();
+        System.out.println("链表长度：" + listCount);
     }
 }
