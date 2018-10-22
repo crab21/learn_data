@@ -4,21 +4,23 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 @SpringBootApplication
+@RestController
 public class AlgorithmApplication {
-
-    static String i;
-
     public static void main(String[] args) {
+
         SpringApplication.run(AlgorithmApplication.class, args);
     }
 
-    public void show() {
-        int i = 0;
-        System.out.println(i);
+    @GetMapping("/webflux")
+    public Flux<String> hello() {
+        return Flux.just("hello");
     }
 }
 
