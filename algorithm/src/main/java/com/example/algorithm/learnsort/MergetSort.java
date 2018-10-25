@@ -1,22 +1,34 @@
 package com.example.algorithm.learnsort;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 归并排序
  */
 public class MergetSort {
     public static void main(String[] args) {
-        int[] number = {51, 46, 20, 18, 65, 97, 82, 30, 77, 50,23};
+        /*int[] number = {51, 46, 20, 18, 65, 97, 82, 30, 77, 50,23};
         mergeSort(number, 0, number.length - 1);
         System.out.println(Arrays.toString(number));
+        System.out.println(count);*/
+        int[] a;
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 9999999; ++i) {
+            list.add(i);
+        }
+        a = list.stream().mapToInt(Integer::intValue).toArray();
+        long time = new Date().getTime();
+        System.out.println("开始排序");
+        mergeSort(a, 0, a.length - 1);
+        System.out.println(new Date().getTime() - time);
         System.out.println(count);
     }
 
     private static void mergeSort(int[] number, int low, int high) {
         int mid = (low + high) / 2;
         if (low < high) {
-            count++;
             mergeSort(number, low, mid);
             mergeSort(number, mid + 1, high);
             merge(number, low, mid, high);
@@ -27,7 +39,7 @@ public class MergetSort {
     private static int count = 0;
 
     private static void merge(int[] number, int low, int mid, int high) {
-
+        count++;
         int[] tmp = new int[high - low + 1];
         // 左边界
         int left = low;
