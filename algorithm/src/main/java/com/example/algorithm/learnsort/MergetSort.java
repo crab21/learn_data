@@ -26,6 +26,7 @@ public class MergetSort {
         System.out.println(count);
     }
 
+
     private static void mergeSort(int[] number, int low, int high) {
         int mid = (low + high) / 2;
         if (low < high) {
