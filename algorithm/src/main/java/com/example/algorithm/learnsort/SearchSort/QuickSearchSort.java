@@ -1,5 +1,9 @@
 package com.example.algorithm.learnsort.SearchSort;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 查找k元素
  */
@@ -8,6 +12,7 @@ public class QuickSearchSort {
 
     /**
      * 排序找出第k小的元素
+     *
      * @param number
      * @param k
      * @return
@@ -60,9 +65,21 @@ public class QuickSearchSort {
 
     public static void main(String[] args) {
 
-        int[] a = {9, 0, 6, 5, 8, 2, 1, 7, 4, 3};
+       /* int[] a = {9, 0, 6, 5, 8, 2, 1, 7, 4, 3};
         int result = selectMinKth(a, 3);
-        System.out.println(result);
+        System.out.println(result);*/
+//        Queue<String> result = new LinkedList<>();
+//        result.offer(null);
+        stringToBytes("111111");
+
+    }
+
+    public  static void stringToBytes(String str) {
+        if (str == null) {
+            return;
+        }
+        byte[] bytes = str.getBytes();
+        System.out.println(Arrays.toString(bytes));
     }
 
 

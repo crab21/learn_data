@@ -60,7 +60,6 @@ public class QucikSort {
         int end = a.length - 1;
 
         int pivotPos;
-
         startStack.push(start);
         endStack.push(end);
 
