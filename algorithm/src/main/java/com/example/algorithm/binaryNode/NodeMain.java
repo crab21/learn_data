@@ -20,5 +20,11 @@ public class NodeMain {
 
         int a = 234;
         System.out.println((byte) a);
+
+        NodeBina node = new NodeBinaImpl().findNode(nodeBina, 20);
+        System.out.println(node.getData());
+        System.out.println(node.getLeftChild().getData());
+
+
     }
 }

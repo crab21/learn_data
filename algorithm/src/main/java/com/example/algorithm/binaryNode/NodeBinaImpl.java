@@ -53,5 +53,16 @@ public class NodeBinaImpl implements NodeTree {
         }
     }
 
-
+    public NodeBina findNode(NodeBina nodeBina, Object data) {
+        while (nodeBina != null) {
+            if ((int) data < (int) nodeBina.getData()) {
+                nodeBina = nodeBina.getLeftChild();
+            } else if ((int) data > (int) nodeBina.getData()) {
+                nodeBina = nodeBina.getRightChild();
+            } else {
+                return nodeBina;
+            }
+        }
+        return null;
+    }
 }
