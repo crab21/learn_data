@@ -57,11 +57,11 @@ public class NettyServerDemo {
                             System.out.println("Port:" + ch.localAddress().getPort());
                             System.out.println("报告完毕");
 
-
+                            //先设置心跳信息 初始化最先加载ß
+                            ch.pipeline().addLast(new MyServerInitializer());
                             ch.pipeline().addLast(new StringEncoder(Charset.forName("GBK")));
                             ch.pipeline().addLast(new EchoServerHandler()); // 客户端触发操作
                             ch.pipeline().addLast(new ByteArrayEncoder());
-                            ch.pipeline().addLast(new MyServerInitializer());
                         }
                     });
             ChannelFuture cf = serverBootstrap.bind().sync();
