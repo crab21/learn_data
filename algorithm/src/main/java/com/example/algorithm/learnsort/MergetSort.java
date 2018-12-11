@@ -59,6 +59,5 @@ public class MergetSort {
         for (int k2 = 0; k2 < tmp.length; k2++) {
             number[k2 + low] = tmp[k2];
         }
-
     }
 }

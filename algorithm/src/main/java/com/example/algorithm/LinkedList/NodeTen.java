@@ -1,5 +1,9 @@
 package com.example.algorithm.LinkedList;
 
+import javax.swing.text.Segment;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * Created by k on 2018/10/5.
  */
@@ -172,5 +176,6 @@ public class NodeTen {
         nodeTen.deleteDuplecate(nodeTen.head);
         nodeTen.printNode();*/
         nodeTen.printRecursive(nodeTen.head);
+
     }
 }

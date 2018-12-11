@@ -1,8 +1,6 @@
 package com.example.algorithm.learnsort.SearchSort;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * 查找k元素
@@ -71,7 +69,6 @@ public class QuickSearchSort {
 //        Queue<String> result = new LinkedList<>();
 //        result.offer(null);
         stringToBytes("111111");
-
     }
 
     public  static void stringToBytes(String str) {
