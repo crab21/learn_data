@@ -1,13 +1,11 @@
 package com.example.algorithm.learnThread;
 
-import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class SendOrder {
     public static void main(String[] args) {
@@ -25,12 +23,13 @@ public class SendOrder {
     private static AtomicBoolean bb = new AtomicBoolean(true);
     private static Lock lock = new ReentrantLock(true);
 
+
     private static Condition condition = lock.newCondition();
     private static Condition conditionAll = lock.newCondition();
 
     public static void sendAll() {
         System.out.println("sendall");
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 2; ++i) {
             new Thread(() -> {
                 System.out.println("start send");
                 aa.addAndGet(1);
@@ -41,14 +40,14 @@ public class SendOrder {
     }
 
     public static void sendMsg(int size) {
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 100; ++i) {
             int finalI = i;
 
             new Thread(() -> {
                 lock.lock();
                 try {
                     System.out.println("准备好了" + finalI);
-                    if (aa.get() == 10 && finalI == 9) {
+                    if (aa.get() == 2 && finalI == 99) {
                         sendTmp();
                     }
                     condition.await();
@@ -72,7 +71,7 @@ public class SendOrder {
                 e.printStackTrace();
             }
             System.out.println("通知发送全部");
-            conditionAll.signal();
+            conditionAll.signalAll();
             System.out.println("send end.......");
             lock.unlock();
         }).start();
