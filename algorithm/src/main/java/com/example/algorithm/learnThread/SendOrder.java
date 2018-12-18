@@ -1,5 +1,8 @@
 package com.example.algorithm.learnThread;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -9,19 +12,24 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class SendOrder {
     public static void main(String[] args) {
-        sendAllTo();
+    /*    sendAllTo();
         sendAll();
         try {
             Thread.sleep(5);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
+        Queue<Integer> li = new LinkedList<>();
+        li.offer(1);
+        li.offer(12);
+        Integer poll = ((LinkedList<Integer>) li).pollLast();
+        System.out.println(poll);
     }
 
     private static AtomicInteger aa = new AtomicInteger(0);
     private static AtomicBoolean bb = new AtomicBoolean(true);
-    private static Lock lock = new ReentrantLock(true);
+    private static Lock lock = new ReentrantLock(false);
 
 
     private static Condition condition = lock.newCondition();
@@ -29,7 +37,7 @@ public class SendOrder {
 
     public static void sendAll() {
         System.out.println("sendall");
-        for (int i = 0; i < 2; ++i) {
+        for (int i = 0; i < 1; ++i) {
             new Thread(() -> {
                 System.out.println("start send");
                 aa.addAndGet(1);
@@ -42,12 +50,13 @@ public class SendOrder {
     public static void sendMsg(int size) {
         for (int i = 0; i < 100; ++i) {
             int finalI = i;
+            Stack stack = new Stack();
 
             new Thread(() -> {
                 lock.lock();
                 try {
                     System.out.println("准备好了" + finalI);
-                    if (aa.get() == 2 && finalI == 99) {
+                    if (aa.get() == 1 && finalI == 99) {
                         sendTmp();
                     }
                     condition.await();
