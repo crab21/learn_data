@@ -45,10 +45,9 @@ public class NettyServerDemo {
         NioEventLoopGroup group = new NioEventLoopGroup();
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
-            serverBootstrap.option(ChannelOption.SO_BACKLOG, 1024);
-            serverBootstrap.group(bossgroup, group)
-                    //设置启用Nagle的算法 true-->不启用  false-->启用
-                    .childOption(ChannelOption.TCP_NODELAY, true)
+
+            serverBootstrap= serverBootstrap.group(bossgroup, group)
+
                     .channel(NioServerSocketChannel.class)
                     .localAddress(port)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
@@ -65,7 +64,9 @@ public class NettyServerDemo {
                             ch.pipeline().addLast(new EchoServerHandler()); // 客户端触发操作
                             ch.pipeline().addLast(new ByteArrayEncoder());
                         }
-                    });
+                    })
+                    //设置启用Nagle的算法 true-->不启用  false-->启用
+                    .option(ChannelOption.SO_BACKLOG, 1024).childOption(ChannelOption.TCP_NODELAY, true);
             ChannelFuture cf = serverBootstrap.bind(3577).sync();
             System.out.println(NettyServerDemo.class + " 启动正在监听： " + cf.channel().localAddress());
             cf.channel().closeFuture().sync(); // 关闭服务器通道
