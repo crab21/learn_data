@@ -5,6 +5,7 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.pool.FixedChannelPool;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.bytes.ByteArrayEncoder;
@@ -46,6 +47,8 @@ public class NettyServerDemo {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.option(ChannelOption.SO_BACKLOG, 1024);
             serverBootstrap.group(bossgroup, group)
+                    //设置启用Nagle的算法 true-->不启用  false-->启用
+                    .childOption(ChannelOption.TCP_NODELAY, true)
                     .channel(NioServerSocketChannel.class)
                     .localAddress(port)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
@@ -56,7 +59,6 @@ public class NettyServerDemo {
                             System.out.println("IP:" + ch.localAddress().getHostName());
                             System.out.println("Port:" + ch.localAddress().getPort());
                             System.out.println("报告完毕");
-
                             //先设置心跳信息 初始化最先加载ß
                             ch.pipeline().addLast(new MyServerInitializer());
                             ch.pipeline().addLast(new StringEncoder(Charset.forName("GBK")));
@@ -64,7 +66,7 @@ public class NettyServerDemo {
                             ch.pipeline().addLast(new ByteArrayEncoder());
                         }
                     });
-            ChannelFuture cf = serverBootstrap.bind().sync();
+            ChannelFuture cf = serverBootstrap.bind(3577).sync();
             System.out.println(NettyServerDemo.class + " 启动正在监听： " + cf.channel().localAddress());
             cf.channel().closeFuture().sync(); // 关闭服务器通道
         } finally {
