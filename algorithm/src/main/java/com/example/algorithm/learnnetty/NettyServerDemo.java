@@ -13,6 +13,7 @@ import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
 
 import java.nio.charset.Charset;
+import java.util.Vector;
 
 public class NettyServerDemo {
     private int port;
@@ -36,13 +37,12 @@ public class NettyServerDemo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
     private void start() throws InterruptedException {
 
-        NioEventLoopGroup bossgroup = new NioEventLoopGroup();
-        NioEventLoopGroup group = new NioEventLoopGroup();
+        NioEventLoopGroup bossgroup = new NioEventLoopGroup(32);
+        NioEventLoopGroup group = new NioEventLoopGroup(32);
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
 
