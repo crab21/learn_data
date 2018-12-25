@@ -45,14 +45,14 @@ public class BackTracking {
     }
 
     public static void main(String[] args) {
-        int[]a = {1,2,3,4};
+        int[]a = {1,3,5,7};
         List<List<Integer>> permute = new BackTracking().permute(a);
-//        permute.stream().forEach(k->{
-//            k.stream().forEach(l->{
-//                System.out.print(l);
-//            });
-//            System.out.println();
-//        });
+        permute.stream().forEach(k->{
+            k.stream().forEach(l->{
+                System.out.print(l);
+            });
+            System.out.println();
+        });
         System.out.println(permute.size());
     }
 }

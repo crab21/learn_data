@@ -39,9 +39,18 @@ public class NettyServerDemo {
         }
     }
 
+    /**
+     * N核服务器，通过执行业务的单线程分析出本地计算时间为x，等待时间为y，
+     * 则工作线程数（线程池线程数）设置为 N*(x+y)/x，能让CPU的利用率最大化
+     * @throws InterruptedException
+     */
     private void start() throws InterruptedException {
 
+        //-Dnetty.server.parentgroup.size=2 -Dnetty.server.childgroup.size=4
+
+        //boss用来接收进来的连接
         NioEventLoopGroup bossgroup = new NioEventLoopGroup(32);
+        //用来处理已经被接收的连接
         NioEventLoopGroup group = new NioEventLoopGroup(32);
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
