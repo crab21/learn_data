@@ -33,5 +33,13 @@ public class MaxStringLength {
     public static void main(String[] args) {
         int result = lengthOfLengthString("tabcadfeab");
         System.out.println(result);
+        while (true) {
+            System.out.println("ok");
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

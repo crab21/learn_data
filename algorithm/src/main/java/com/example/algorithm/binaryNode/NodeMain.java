@@ -1,5 +1,10 @@
 package com.example.algorithm.binaryNode;
 
+import org.springframework.scheduling.concurrent.ScheduledExecutorTask;
+
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+
 /**
  * Created by k on 2018/8/14.
  */
@@ -24,7 +29,5 @@ public class NodeMain {
         NodeBina node = new NodeBinaImpl().findNode(nodeBina, 20);
         System.out.println(node.getData());
         System.out.println(node.getLeftChild().getData());
-
-
     }
 }
