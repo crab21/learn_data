@@ -1,6 +1,11 @@
 package com.example.algorithm.learnsort.SearchSort;
 
+import org.springframework.batch.core.configuration.support.AbstractApplicationContextFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 查找k元素
@@ -68,8 +73,15 @@ public class QuickSearchSort {
         System.out.println(result);*/
 //        Queue<String> result = new LinkedList<>();
 //        result.offer(null);
-        stringToBytes("111111");
+//        stringToBytes("111111");
+        int[] num = {10, 100, 9, 8, 4,4,4, 32};
+//        _sort(num, 0, num.length - 1);
+//        System.out.println(Arrays.toString(num));
+
+        insertSort(num);
+        System.out.println(Arrays.toString(num));
     }
+
 
     public  static void stringToBytes(String str) {
         if (str == null) {
@@ -79,5 +91,50 @@ public class QuickSearchSort {
         System.out.println(Arrays.toString(bytes));
     }
 
+
+    public static void _sort(int[] num, int low, int high) {
+        if (low < high) {
+            int mid = getMiddle(num, low, high);
+            _sort(num, low, mid-1);
+            _sort(num, mid + 1, high);
+        }
+    }
+
+    private static AtomicInteger atomicInteger = new AtomicInteger(0);
+
+    private static int getMiddle(int[] num, int low, int high) {
+        int tmp = num[low];
+
+        while (low < high) {
+            while (low < high && tmp <= num[high]) {
+                high--;
+            }
+            atomicInteger.addAndGet(1);
+            num[low] = num[high];
+            while (low < high && tmp >= num[low]) {
+                low++;
+            }
+            atomicInteger.addAndGet(1);
+            num[high] = num[low];
+        }
+        num[low] = tmp;
+        return low;
+    }
+
+
+    private static void insertSort(int[] num) {
+        int i, j;
+        for (i = 1; i < num.length; ++i) {
+            if (num[i - 1] > num[i]) {
+                int tmp = num[i];
+
+                for (j = i - 1; j >= 0 && num[j] >tmp; --j) {
+                    num[j + 1] = num[j];
+                }
+                AbstractApplicationContextFactory
+                num[j + 1] = tmp;
+            }
+        }
+    }
 
 }

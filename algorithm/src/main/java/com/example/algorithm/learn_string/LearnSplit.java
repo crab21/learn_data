@@ -16,7 +16,7 @@ public class LearnSplit {
         int i = "12356".indexOf(ch = regex.charAt(0));
         System.out.println(i);*//*
 
-*/
+     */
 /*        int i1 = (ch - 'a') | ('z' - ch);
         System.out.println(i1);*//*
 
@@ -38,12 +38,12 @@ public class LearnSplit {
 
     /**
      * 递归截取字符串
-     *
-     *
+     * <p>
+     * <p>
      * 思想：  逐步分解  递归取出其中结果  按照所需分类   保证线程安全切同步
-     *
-     *
-     *
+     * <p>
+     * <p>
+     * <p>
      * 最好采用链表方式取出   按照顺序
      */
     private static StringBuilder recursiveString(StringBuilder str, StringBuilder result) {
@@ -70,9 +70,9 @@ public class LearnSplit {
         if (j == -1) {
             result.append(str.substring(i));
             return result;
-        }else{
+        } else {
             result.append(str.substring(i, j));
-           recursiveString(new StringBuilder(str.substring(j)),result);
+            recursiveString(new StringBuilder(str.substring(j)), result);
         }
         return result;
     }
@@ -123,13 +123,17 @@ public class LearnSplit {
      */
 
     private static void stringUnderstand() {
-        String s = "hello world";
-        String ss = "hello world";
-        String n = s.substring(5);
-        System.out.println(s.hashCode());
-        System.out.println(n.hashCode());
+        final String s = "hello world";
+        String ss = "hello world.";
+        String n = "hello"+s.substring(5);
 
+        String n1 = s + ".";
+        System.out.println(n1);
+        System.out.println(n1.hashCode());
         System.out.println(ss.hashCode());
+        if (n1 != ss) {
+            System.out.println("=====");
+        }
     }
 
 
