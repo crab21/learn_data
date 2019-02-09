@@ -127,11 +127,9 @@ public class QuickSearchSort {
         for (i = 1; i < num.length; ++i) {
             if (num[i - 1] > num[i]) {
                 int tmp = num[i];
-
                 for (j = i - 1; j >= 0 && num[j] >tmp; --j) {
                     num[j + 1] = num[j];
                 }
-                AbstractApplicationContextFactory
                 num[j + 1] = tmp;
             }
         }

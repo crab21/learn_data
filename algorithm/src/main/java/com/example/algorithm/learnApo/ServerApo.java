@@ -63,7 +63,7 @@ public class ServerApo {
         while (true) {
             server.message.setPayload(("可以了abc1" + count).getBytes());
             server.publish(server.topic, server.message);
-//            Thread.sleep(100);
+            Thread.sleep(1000);
             count++;
         }
 
