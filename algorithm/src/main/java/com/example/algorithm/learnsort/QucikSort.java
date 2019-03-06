@@ -1,9 +1,6 @@
 package com.example.algorithm.learnsort;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class QucikSort {
 
