@@ -1,5 +1,12 @@
 package com.example.algorithm;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.*;
 import java.util.function.BiConsumer;
@@ -14,9 +21,12 @@ public class Main {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
         System.out.println("end to start compute. passed " + (System.currentTimeMillis() - t)/1000 + " seconds");
         return rand.nextInt(1000);
     }
+
+
     public static void main(String[] args) throws Exception {
        /* CompletableFuture<Integer> future = CompletableFuture.supplyAsync(Main::getMoreData);
         Future<Integer> f = future.whenComplete((v, e) -> {
@@ -25,7 +35,9 @@ public class Main {
         });
         System.out.println(f.get());
         System.in.read();*/
-       method();
+//       method();
+
+
     }
 
 

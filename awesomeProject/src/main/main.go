@@ -1,7 +1,7 @@
 package main
 
 import (
-	"awesomeProject/src/sp/upload"
+
 	"flag"
 	"fmt"
 	"github.com/kataras/iris"
@@ -21,6 +21,7 @@ func main() {
 	if(strings.Trim(s,"") != "") {
 		upload.FilePath = s
 	}
+	sp.OpenRead()
 	app := iris.New()
 	app.RegisterView(iris.HTML("/home/views/", ".html"))
 	app.Get("/upload", upload.UploadToHtml)

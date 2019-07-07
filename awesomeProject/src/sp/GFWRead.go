@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func openRead() {
+func OpenRead() {
 	fi, _ := os.Open("/Users/wangpeiyuan/Downloads/Quantumult.conf")
 	defer fi.Close()
 	reader := bufio.NewReader(fi)

@@ -1,9 +1,15 @@
 package com.example.reflection;
 
+import com.google.common.util.concurrent.RateLimiter;
+import net.sf.cglib.beans.BeanMap;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class LearnReflection {
     private String name;
@@ -19,7 +25,7 @@ public class LearnReflection {
         System.out.println("on now time is ......");
     }
 
-    public static void main(String[] args) throws IllegalAccessException, InvocationTargetException, InstantiationException {
+    public  void mmp(String[] args) throws IllegalAccessException, InvocationTargetException, InstantiationException {
         LearnReflection learnReflection = new LearnReflection();
         String name = learnReflection.getClass().getPackage().getName();
         System.out.println(name);
@@ -49,5 +55,20 @@ public class LearnReflection {
             e.printStackTrace();
         }
 
+    }
+
+
+    public static void main(String[] args) {
+        long l = System.currentTimeMillis();
+        List<Long> list = new ArrayList<>();
+        for (long i = 0; i < 9999999; ++i) {
+            list.add(i);
+        }
+        for (long i = 0; i < list.size(); ++i) {
+            System.out.println(i*i);
+        }
+
+
+        System.out.println("============="+(System.currentTimeMillis()-l));
     }
 }
